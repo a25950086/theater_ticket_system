@@ -97,77 +97,45 @@
                 </a>
             </div>
             <div class="body">
-            <table class="blueTable">
-            <thead>
-                <tr>
-                <th class="idtd">No.</th>
-                        <th>電影名稱</th>
-                        <th>評分</th>
-                        <th>導演</th>
-                        <th>詳細內容</th>
-                </tr>
-            </thead>
-            <tfoot>
-            <tr>
-            <td colspan="5">
-            <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
-            </td>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr>
-            <td class="idtd">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            </tr>
-            <tr>
-            <td class="idtd">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            </tr>
-            <tr>
-            <td class="idtd">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            </tr>
-            <tr>
-            <td class="idtd">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            </tr>
-            <tr>
-            <td class="idtd">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            </tr>
-            <tr>
-            <td class="idtd">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            </tr>
-            <tr>
-            <td class="idtd">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            </tr>
-            </tbody>
-            </table>
-                
-               
+                <table class="blueTable">
+                    <thead>
+                        <tr>
+                        <th class="idtd">No.</th>
+                                <th>電影名稱</th>
+                                <th>評分</th>
+                                <th>導演</th>
+                                <th>詳細內容</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                        <td colspan="5">
+                        <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
+                        </td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                            <?php
+                                include "db_conn.php";
+                                $mTitle  = "2gether電影版：只因我們天生一對";
+                                $query = ("select * from movie");
+                                $stmt = $db->prepare($query);
+                                $error = $stmt->execute();
+                                $result = $stmt->fetchAll();
+                                //以上寫法是為了防止「sql injection」
+
+                                for($i=0; $i<count($result); $i++){
+                                    echo "<tr>";
+                                        echo "<td>".$i."</td>";
+                                        echo "<td class='idtd'>".$result [$i]['mTitle']."</td>";
+                                        echo "<td>".$result [$i]['mRating']."</td>";
+                                        echo "<td>".$result[$i]['mDirector']."</td>";
+                                        echo "<td>".$result[$i]['mPlot']."</td>";
+                                    echo "</tr>";
+                                }
+                            ?>
+                    </tbody>
+                </table>
             </div>
         </header>
     </body>
