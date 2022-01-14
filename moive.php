@@ -126,7 +126,7 @@
 
                                 for($i=0; $i<count($result); $i++){
                                     echo "<tr>";
-                                        echo "<td>".$i."</td>";
+                                        echo "<td>".$i+'1'."</td>";
                                         echo "<td class='idtd'>".$result [$i]['mTitle']."</td>";
                                         echo "<td>".$result [$i]['mRating']."</td>";
                                         echo "<td>".$result[$i]['mDirector']."</td>";
