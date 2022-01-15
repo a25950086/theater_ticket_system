@@ -123,33 +123,37 @@
             </div>
             <div class="body">
                 <a  href="index.php"><img  class="icon_b" src="icon_b.png" alt="" width="50%" ></a>
-                 <table class="blueTable" align="center" >
-                        <tbody>
-                            <tr><th width='100%' height='15%' colspan='3' align='center';>影廳介紹</th></tr>
-                            <tr><td width='33%'>影廳名稱</td><td width='33%'>地址</td><td width='33%'>電話</td></tr>
-                            <?php
-                                    include "db_conn.php";
-                                    $query = ("select * from cinemas");
-                                    $stmt = $db->prepare($query);
-                                    $error = $stmt->execute();
-                                    $result = $stmt->fetchAll();
-                                    //以上寫法是為了防止「sql injection」
+                <table class="blueTable" align="center" >
+                    <thead>
+                        <tr>
+                        <th class="idtd">影廳名稱</th>
+                                <th>地址</th>
+                                <th>電話</th>
+                                <th>詳細</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                                include "db_conn.php";
+                                $query = ("select * from cinemas");
+                                $stmt = $db->prepare($query);
+                                $error = $stmt->execute();
+                                $result = $stmt->fetchAll();
+                                //以上寫法是為了防止「sql injection」
 
-                                    for($i=0; $i<count($result); $i++){
-                                        $cName = $result [$i]['cName'];
-                                        echo "<tr>";
-                                            echo "<td>".$result [$i]['cName']."</td>";
-                                            echo "<td>".$result [$i]['Address']."</td>";
-                                            echo "<td>".$result [$i]['cPhone']."</td>";
-                                            echo "<td><a href='cinema_introduce.php?cName=$cName'>查看更多</a></td>";
-                                        echo "</tr>";
-                                            
-                                        
-                                    }
-                                ?>
+                                for($i=0; $i<count($result); $i++){
+                                    $cName = $result [$i]['cName'];
+                                    echo "<tr>";
+                                        echo "<td>".$result [$i]['cName']."</td>";
+                                        echo "<td>".$result [$i]['Address']."</td>";
+                                        echo "<td>".$result [$i]['cPhone']."</td>";
+                                        echo "<td><a href='product.php?cName=$cName'>查看更多</a></td>";
+                                    echo "</tr>";
+                                }
+                            ?>
                         </tbody>
-                    </table>
-                  </div>    
+                 </table>
+            </div>    
         </header>
     </body>
 </html>
