@@ -160,6 +160,11 @@
                                 }
                             ?>
                     </tbody>
+                    <?php
+                        if($_SESSION['mId']=='v123456789'){
+                            echo "<a href='new_movie.php'>新增電影</a>";
+                        }
+                    ?>
                 </table>
             </div>
         </header>
