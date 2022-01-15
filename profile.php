@@ -125,6 +125,7 @@
                                     echo "<tr><td class='idtd'>信箱</td><td>".$_SESSION['email']."</td></tr>";
                                     echo "<tr><td class='idtd'>電話</td><td>".$_SESSION['mPhone']."</td></tr>";
                                     echo "<tr><td class='idtd'>訂單查詢</td><td><a href='transaction.php'>查詢訂單</a></td></tr>";
+                                    
                                 echo "</div>";
                             }
                         ?>
