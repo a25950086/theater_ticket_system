@@ -148,8 +148,10 @@
                                 <th>電話</th>
                                 <th>詳細</th>
                                 <?php
-                                    if($_SESSION['mId']=='v123456789'){
-                                        echo "<th>更多選項</th>";
+                                    if(isset($_SESSION['mId'])){
+                                        if($_SESSION['mId']=='v123456789'){
+                                            echo "<th>更多選項</th>";
+                                        }
                                     }
                                 ?>
                         </tr>
@@ -170,17 +172,21 @@
                                         echo "<td>".$result [$i]['Address']."</td>";
                                         echo "<td>".$result [$i]['cPhone']."</td>";
                                         echo "<td><a href='product.php?cName=$cName'>查看更多</a></td>";
-                                        if($_SESSION['mId']=='v123456789'){
-                                            $cName = $result [$i]['cName'];
-                                            echo "<td><a href='modify_cinema.php?cName=$cName'>更新</a> / <a href='delete_cinama.php?cName=$cName'>刪除</a></td>";
+                                        if(isset($_SESSION['mId'])){
+                                            if($_SESSION['mId']=='v123456789'){
+                                                $cName = $result [$i]['cName'];
+                                                echo "<td><a href='modify_cinema.php?cName=$cName'>更新</a> / <a href='delete_cinama.php?cName=$cName'>刪除</a></td>";
+                                            }
                                         }
                                     echo "</tr>";
                                 }
                             ?>
                         </tbody>
                     <?php
-                        if($_SESSION['mId']=='v123456789'){
-                            echo "<a href='new_cinema.php'>新增影城</a>";
+                        if(isset($_SESSION['mId'])){
+                            if($_SESSION['mId']=='v123456789'){
+                                echo "<a href='new_cinema.php'>新增影城</a>";
+                            }
                         }
                     ?>
                  </table>
