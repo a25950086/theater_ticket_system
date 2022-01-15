@@ -58,17 +58,17 @@
                 <a  href="index.php"><img  class="icon_b" src="icon_b.png" alt="" width="50%" ></a>
                 <h1>登入</h1>
                 <div class="login">
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="text" name="email"id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <br><br><br>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" name="password"id="inputPassword" class="form-control" placeholder="Password" required>
-                <br><br><br>
-                <a href="register_member.php">註冊</a>
-                <button  type="submit" name="signIn">登入</button>
+                <form action='login.php' method='post'>
+                    <label for="inputmId" class="sr-only">身分證字號</label>
+                    <input type="text" name="mId"id="inputmId" class="form-control" placeholder="請輸入身分證字號" required autofocus>
+                    <br><br><br>
+                    <label for="inputPassword" class="sr-only">密碼</label>
+                    <input type="password" name="password"id="inputPassword" class="form-control" placeholder="請輸入密碼" required>
+                    <br><br><br>
+                    <a href="register_member.php">註冊</a>
+                    <button  type="submit" name="signIn">登入</button>
+                </form>
                 </div>
-               
-               
             </div>
         </header>
     </body>
