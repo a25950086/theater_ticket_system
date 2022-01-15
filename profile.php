@@ -141,12 +141,14 @@
 
                             for($i=0; $i<count($result); $i++){
                                 echo "<div>";
+                                    $mName = $_SESSION['mName'];
                                     echo "<tr><td class='idtd'>會員姓名</td><td>".$_SESSION['mName']."</td></tr>";
                                     echo "<tr><td class='idtd'>會員ID</td><td>".$_SESSION['mId']."</td></tr>";
                                     echo "<tr><td class='idtd'>信箱</td><td>".$_SESSION['email']."</td></tr>";
                                     echo "<tr><td class='idtd'>電話</td><td>".$_SESSION['mPhone']."</td></tr>";
                                     echo "<tr><td class='idtd'>訂單查詢</td><td><a href='transaction.php'>查詢訂單</a></td></tr>";
                                     echo "<tr><td colspan='2'><a href='modify_member_information.php'><input button type='submit' class='edit' value='修改' ></a></td></tr>";
+                                    echo "<tr><td colspan='2'><a href='delete_member.php?mName=$mName'><input button type='submit' value='刪除帳號' ></a></td></tr>";
                                 echo "</div>";
                             }
                         ?>
