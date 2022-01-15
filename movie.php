@@ -116,7 +116,7 @@
                 </form>
             </div>
             <div class="body">
-                <table class="blueTable">
+                <table id="myTable" class="tablesorter blueTable">
                     <thead>
                         <tr>
                         <th class="idtd">No.</th>
@@ -154,7 +154,6 @@
                                         echo "<td>".$result[$i]['mDirector']."</td>";
                                         echo "<td>".$result[$i]['mPlot']."</td>";
                                         echo "<td><a href='movie_introduce.php?mTitle=$mTitle'>查看更多</a></td>";
-                                        
                                         if(isset($_SESSION['mId'])){
                                             if($_SESSION['mId']=='v123456789'){
                                                 $mTitle = $result [$i]['mTitle'];
@@ -177,3 +176,12 @@
         </header>
     </body>
 </html>
+
+<script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.5/css/theme.blue.min.css"></link>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.5/js/jquery.tablesorter.min.js"></script>
+    <script>
+    $("#myTable").tablesorter({
+    
+    });
+</script>

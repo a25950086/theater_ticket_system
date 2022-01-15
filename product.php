@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf8"/>
-        <title>影城介紹</title>
+        <title>商品介紹</title>
         <style>
             body {
                 background-color: #E6E6F2;

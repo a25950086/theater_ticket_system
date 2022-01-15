@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf8"/>
-        <title>會員專區</title>
+        <title>新增影城</title>
         <style>
             body {
                 background-color: #E6E6F2;

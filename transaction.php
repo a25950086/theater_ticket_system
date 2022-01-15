@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf8"/>
-        <title>交易內容</title>
+        <title>購票紀錄</title>
         <style>
             body {
                 background-color: #E6E6F2;
