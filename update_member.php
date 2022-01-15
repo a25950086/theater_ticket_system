@@ -12,5 +12,5 @@
     $query = ("update member set password=?,mName=?,mPhone=?,email=? where mId =?");
     $stmt = $db->prepare($query);
     $stmt->execute(array($password,$mName,$mPhone,$email,$mId));
-    echo '<script>alert("修改成功"); location.href="member.php"</script>;';
+    echo '<script>alert("修改成功"); location.href="logout.php"</script>;';
 ?>

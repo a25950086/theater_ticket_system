@@ -78,7 +78,28 @@
                 font-size:30px; 
                 width:100px;
                 height:auto;
-                margin-left: 2%;
+                margin-left: 1%;
+            }
+            .edit{
+                border:none;
+                background-color: #7373B9;
+                color:white;
+                font-size:30px; 
+                width:100px;
+                height:auto;
+                
+            }
+            
+            button:hover {     
+                background: #f2f2ff; 
+                color: #7373B9; 
+            }
+            .edit:hover {     
+                background: #f2f2ff; 
+                color: #7373B9; 
+            }
+            form{
+                display:inline;
             }
         </style>    
     </head>
@@ -100,7 +121,7 @@
                 <form action='logout.php'>
                     <?php
                         if(isset($_SESSION['mId'])){
-                            echo '<span class="signout"> 你好 '.$_SESSION['mName'].'</span>';
+                            echo '<span class="signout"> 你好&nbsp;&nbsp;'.$_SESSION['mName'].'</span>';
                             echo '<button  type="submit" class="signout" >登出</button>';
                         }
                     ?>
@@ -125,7 +146,7 @@
                                     echo "<tr><td class='idtd'>信箱</td><td>".$_SESSION['email']."</td></tr>";
                                     echo "<tr><td class='idtd'>電話</td><td>".$_SESSION['mPhone']."</td></tr>";
                                     echo "<tr><td class='idtd'>訂單查詢</td><td><a href='transaction.php'>查詢訂單</a></td></tr>";
-                                    
+                                    echo "<tr><td colspan='2'><a href='modify_member_information.php'><input button type='submit' class='edit' value='修改' ></a></td></tr>";
                                 echo "</div>";
                             }
                         ?>
