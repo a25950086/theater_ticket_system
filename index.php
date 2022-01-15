@@ -32,7 +32,7 @@
                 <a href="cinema.php">
                     <img class="icon_s" src="cinema.png" height="50px" width="auto">
                 </a>
-                <a href="moive.php">
+                <a href="movie.php">
                     <img class="icon_s" src="movie.png" height="50px" width="auto">
                 </a>
                 <a href="member.php">

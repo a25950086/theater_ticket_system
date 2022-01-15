@@ -100,7 +100,7 @@
                 <a href="cinema.php">
                     <img class="icon_s" src="cinema.png" height="50px" width="auto">
                 </a>
-                <a href="moive.php">
+                <a href="movie.php">
                     <img class="icon_s" src="movie.png" height="50px" width="auto">
                 </a>
                 <a href="member.php">
@@ -125,6 +125,11 @@
                                 <th>導演</th>
                                 <th>內容簡介</th>
                                 <th>詳細</th>
+                                <?php
+                                    if($_SESSION['mId']=='v123456789'){
+                                        echo "<th>更多選項</th>";
+                                    }
+                                ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -146,7 +151,11 @@
                                         echo "<td>".$result [$i]['mRating']."</td>";
                                         echo "<td>".$result[$i]['mDirector']."</td>";
                                         echo "<td>".$result[$i]['mPlot']."</td>";
-                                        echo "<td><a href='moive_introduce.php?mTitle=$mTitle'>查看更多</a></td>";
+                                        echo "<td><a href='movie_introduce.php?mTitle=$mTitle'>查看更多</a></td>";
+                                        if($_SESSION['mId']=='v123456789'){
+                                            $mTitle = $result [$i]['mTitle'];
+                                            echo "<td><a href='modify_movie.php?mTitle=$mTitle'>更新</a> / <a href='delete_movie.php?mTitle=$mTitle'>刪除</a></td>";
+                                        }
                                     echo "</tr>";
                                 }
                             ?>

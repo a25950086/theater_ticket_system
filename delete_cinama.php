@@ -4,5 +4,5 @@
     $cName = $_GET['cName'];
     $stmt = $db->prepare("delete from cinemas where cName=?");
     $result = $stmt->execute(array($cName));
-    header("Location:cinema.php");
+    echo '<script>alert("刪除成功"); location.href="cinema.php"</script>;';
 ?>
