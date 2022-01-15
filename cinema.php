@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>
     <head>
         <meta charset="utf8"/>
@@ -124,14 +125,28 @@
                 <a  href="index.php"><img  class="icon_b" src="icon_b.png" alt="" width="50%" ></a>
                  <table class="blueTable" align="center" >
                         <tbody>
-                                            <tr><th width='100%' height='15%' colspan='3' align='center';>影廳介紹</th></tr>
-                                            <tr><td width='33%'>影廳名稱</td><td width='33%'>地址</td><td width='33%'>電話</td></tr>
-                                            <tr><td width='33%'> 國賓影城</td><td width='8%'>台北市中山區長春路176號</td><td>02 25155757</td></tr>
-                                            <tr><td width='33%'> 威秀影城</td><td width='8%'>台北市信義區松仁路58號</td><td>02 87800800</td></tr>
-                                            <tr><td width='33%'> 大直影城</td><td width='8%'>台北市中山區敬業三路22號6樓</td><td>02 85022208</td></tr>
-                                            <tr><td width='33%'> 秀泰影城</td><td width='8%'>基隆市中正區信一路177號</td><td>02 24212388</td></tr>
-                                            <tr><td width='33%'> 天母影城</td><td width='8%'>台北市士林區忠誠路二段202號</td><td>02 28763330</td></tr>
-                                            <tr><td colspan='3'></td></tr>
+                            <tr><th width='100%' height='15%' colspan='3' align='center';>影廳介紹</th></tr>
+                            <tr><td width='33%'>影廳名稱</td><td width='33%'>地址</td><td width='33%'>電話</td></tr>
+                            <?php
+                                    include "db_conn.php";
+                                    $query = ("select * from cinemas");
+                                    $stmt = $db->prepare($query);
+                                    $error = $stmt->execute();
+                                    $result = $stmt->fetchAll();
+                                    //以上寫法是為了防止「sql injection」
+
+                                    for($i=0; $i<count($result); $i++){
+                                        $cName = $result [$i]['cName'];
+                                        echo "<tr>";
+                                            echo "<td>".$result [$i]['cName']."</td>";
+                                            echo "<td>".$result [$i]['Address']."</td>";
+                                            echo "<td>".$result [$i]['cPhone']."</td>";
+                                            echo "<td><a href='cinema_introduce.php?cName=$cName'>查看更多</a></td>";
+                                        echo "</tr>";
+                                            
+                                        
+                                    }
+                                ?>
                         </tbody>
                     </table>
                   </div>    
