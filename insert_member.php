@@ -8,12 +8,9 @@
     $mName = $_POST["mName"];
     $mPhone = $_POST["mPhone"];
     $email = $_POST["email"];
-    //使用預處理寫法是為了防止「sql injection」
 
-    //設定要使用的 SQL 指令
     $query = ("insert into member values(?,?,?,?,?)");
     $stmt = $db->prepare($query);
-    
-    //執行 SQL 語法
-    $result = $stmt->execute(array($mId,$password,$mName,$mPhone,$email));
+    $stmt->execute(array($mId,$password,$mName,$mPhone,$email));
+    header("Location:member.php");
 ?>
