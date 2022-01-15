@@ -14,7 +14,7 @@
             }
             .body{
                 margin-left: 15%;
-                margin-top: 3%;
+                margin-top: 1%;
                 width: 70%;
                 height: 80%;
                 background-color:#f2f2ff;
@@ -61,6 +61,7 @@
                 }
                 table.blueTable tfoot td {
                 font-size: 50px;
+                width: auto;
                 }
                 table.blueTable tfoot .links {
                 text-align: right;
@@ -77,6 +78,19 @@
                 }
                 .idtd{
                     width:10%;
+                }
+                .iframe {
+                    position: relative;
+                    width: 100%;
+                    height: 0;
+                    padding-bottom: 56.25%;
+                }
+                .iframe iframe{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
                 }
         </style>    
     </head>
@@ -99,36 +113,33 @@
             <div class="body">
                 <table class="blueTable">
                     <thead>
-                        <tr>
-                        <th class="idtd">No.</th>
-                                <th>電影名稱</th>
-                                <th>評分</th>
-                                <th>導演</th>
-                                <th>內容簡介</th>
-                                <th>詳細</th>
-                        </tr>
+                        
                     </thead>
+                    <tfoot>
+                        
+                    </tfoot>
                     <tbody>
                             <?php
                                 include "db_conn.php";
-                                $mTitle  = "2gether電影版：只因我們天生一對";
-                                $query = ("select * from movie");
+                                $mTitle = "2gether電影版：只因我們天生一對";
+                                if (isset($_GET['mTitle'])) {
+                                    $mTitle = $_GET['mTitle'];
+                                }
+
+                                $query = ("select * from movie where mTitle = ?");
                                 $stmt = $db->prepare($query);
-                                $error = $stmt->execute();
+                                $error = $stmt->execute(array($mTitle));
                                 $result = $stmt->fetchAll();
                                 //以上寫法是為了防止「sql injection」
 
                                 for($i=0; $i<count($result); $i++){
-                                    $no = $i+1;
-                                    $mTitle = $result [$i]['mTitle'];
-                                    echo "<tr>";
-                                        echo "<td>".$no."</td>";
-                                        echo "<td class='idtd'>".$result [$i]['mTitle']."</td>";
-                                        echo "<td>".$result [$i]['mRating']."</td>";
-                                        echo "<td>".$result[$i]['mDirector']."</td>";
-                                        echo "<td>".$result[$i]['mPlot']."</td>";
-                                        echo "<td><a href='moive_introduce.php?mTitle=$mTitle'>查看更多</a></td>";
-                                    echo "</tr>";
+                                    echo "<div>";
+                                        echo "<tr><th width='100%' height='15%' colspan='5' align='center';>".$result [$i]['mTitle']."</th></tr>";
+                                        echo "<tr><td width='20%'>上映日</td><td width='8%'>評價</td><td>導演</td><td>領銜主演</td><td>電影時長</td></tr>";
+                                        echo "<tr><td width='20%'> ".$result [$i]['mTime']."</td><td width='8%'>".$result [$i]['mRating']."</td><td>".$result[$i]['mDirector']."</td><td>".$result[$i]['mLeading']."</td><td>".$result[$i]['mLength']."</td></tr>";
+                                        echo "<tr><td colspan='5' height='auto'><div class='iframe'>".$result [$i]['mTrailer']."</div></td></tr>";
+                                        echo "<tr><td colspan='5'>".$result[$i]['mPlot']."</td></tr>";
+                                    echo "</div>";
                                 }
                             ?>
                     </tbody>
