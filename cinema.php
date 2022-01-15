@@ -178,6 +178,11 @@
                                 }
                             ?>
                         </tbody>
+                    <?php
+                        if($_SESSION['mId']=='v123456789'){
+                            echo "<a href='new_cinema.php'>新增影城</a>";
+                        }
+                    ?>
                  </table>
             </div>    
         </header>
