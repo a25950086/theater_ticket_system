@@ -1,20 +1,20 @@
-<?php
+<?php 
+    session_start();
     include "db_conn.php";
-
     $mId = $_POST['mId'];
     $password = $_POST['password'];
     
-    $query = ("select mId,password from member where mId = ? && password = ?");
+    $query = ("select * from member where mId = ? && password = ?");
     $stmt = $db->prepare($query);
     $error = $stmt->execute(array($mId,$password));
     $result = $stmt->fetchAll();
     //以上寫法是為了防止「sql injection」
     if(count($result)){
-        $_SESSION['mId']=$result['mId'];
-        $_SESSION['password']=$result['password'];
-        $_SESSION['mName']=$result['mName'];
-        $_SESSION['mPhone']=$result['mPhone'];
-        $_SESSION['email']=$result['email'];
+        $_SESSION['mId']=$result[0]['mId'];
+        $_SESSION['password']=$result[0]['password'];
+        $_SESSION['mName']=$result[0]['mName'];
+        $_SESSION['mPhone']=$result[0]['mPhone'];
+        $_SESSION['email']=$result[0]['email'];
         header("Location:profile.php");
     }
     else{

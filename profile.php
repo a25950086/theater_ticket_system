@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>
     <head>
         <meta charset="utf8"/>
@@ -92,31 +93,24 @@
                 <a  href="index.php"><img  class="icon_b" src="icon_b.png" alt="" width="50%" ></a>
                 <table class="table">
                     <tbody>
-                        <tr>
-                        <td class="idtd">會員姓名</td>
-                        <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                        <td class="idtd">會員ID</td>
-                        <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                        <td class="idtd">會員密碼</td>
-                        <td><a href="javascript:" onclick="hide1.style.display=hide1.style.display=='none'?'':'none'">點我展開／隱藏密碼</a>
-                            <br><span id="hide1" style="display:none">******(密碼在這)</span></td>
-                        </tr>
-                        <tr>
-                        <td class="idtd">註冊信箱</td>
-                        <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                        <td class="idtd">電話</td>
-                        <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                        <td class="idtd">訂單查詢</td>
-                        <td><a href="transaction.php">查詢訂單</a></td>
-                        </tr>
+                        <?php
+                            include "db_conn.php";
+                            $query = ("select * from member where mId = ?");
+                            $stmt = $db->prepare($query);
+                            $error = $stmt->execute(array($_SESSION['mId']));
+                            $result = $stmt->fetchAll();
+                            //以上寫法是為了防止「sql injection」
+
+                            for($i=0; $i<count($result); $i++){
+                                echo "<div>";
+                                    echo "<tr><td class='idtd'>會員姓名</td><td>".$_SESSION['mName']."</td></tr>";
+                                    echo "<tr><td class='idtd'>會員ID</td><td>".$_SESSION['mId']."</td></tr>";
+                                    echo "<tr><td class='idtd'>信箱</td><td>".$_SESSION['email']."</td></tr>";
+                                    echo "<tr><td class='idtd'>電話</td><td>".$_SESSION['mPhone']."</td></tr>";
+                                    echo "<tr><td class='idtd'>訂單查詢</td><td><a href='transaction.php'>查詢訂單</a></td></tr>";
+                                echo "</div>";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

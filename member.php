@@ -1,3 +1,9 @@
+<?php 
+    session_start(); 
+    if($_SESSION['mId']){
+        header("Location:profile.php");
+    }
+?>
 <html>
     <head>
         <meta charset="utf8"/>

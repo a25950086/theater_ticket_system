@@ -12,5 +12,5 @@
     $query = ("insert into member values(?,?,?,?,?)");
     $stmt = $db->prepare($query);
     $stmt->execute(array($mId,$password,$mName,$mPhone,$email));
-    header("Location:member.php");
+    echo '<script>alert("註冊成功"); location.href="member.php"</script>;';
 ?>
