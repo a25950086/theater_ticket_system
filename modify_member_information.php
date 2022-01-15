@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+
 <html>
     <head>
         <meta charset="utf8"/>
@@ -37,40 +38,6 @@
             .login{
                 text-align:center;
             }
-            table{
-                margin-top: 5%;
-                margin-left: 20%;
-            }
-            table.table {
-                border: 1px solid #1C6EA4;
-                background-color: #DFD7FC;
-                width: 60%;
-                height:50%;
-                
-                text-align: center;
-            }
-            table.table td, table.table th {
-                border: 1px solid #AAAAAA;  
-            }
-            table.table tbody td {
-                font-size: 20px;
-            }
-            table.table tr:nth-child(even) {
-                background: #f2f2ff;
-            }
-            table.table tfoot td {
-                font-size: 20px;
-            }
-            .icon_b{
-                padding-top: 3%;
-                padding-left: 25%;
-            }
-            a{
-                text-decoration:none;
-            }
-            .idtd{
-                width:20%;
-            }
             .signout{
                 border:none;
                 background-color: #7373B9;
@@ -108,28 +75,27 @@
             </div>
             <div class="body">
                 <a  href="index.php"><img  class="icon_b" src="icon_b.png" alt="" width="50%" ></a>
-                <table class="table">
-                    <tbody>
-                        <?php
-                            include "db_conn.php";
-                            $query = ("select * from member where mId = ?");
-                            $stmt = $db->prepare($query);
-                            $error = $stmt->execute(array($_SESSION['mId']));
-                            $result = $stmt->fetchAll();
-                            //以上寫法是為了防止「sql injection」
-
-                            for($i=0; $i<count($result); $i++){
-                                echo "<div>";
-                                    echo "<tr><td class='idtd'>會員姓名</td><td>".$_SESSION['mName']."</td></tr>";
-                                    echo "<tr><td class='idtd'>會員ID</td><td>".$_SESSION['mId']."</td></tr>";
-                                    echo "<tr><td class='idtd'>信箱</td><td>".$_SESSION['email']."</td></tr>";
-                                    echo "<tr><td class='idtd'>電話</td><td>".$_SESSION['mPhone']."</td></tr>";
-                                    echo "<tr><td class='idtd'>訂單查詢</td><td><a href='transaction.php'>查詢訂單</a></td></tr>";
-                                echo "</div>";
-                            }
-                        ?>
-                    </tbody>
-                </table>
+                <h1>修改個人資料</h1>
+                <div class="login">
+                <form action='update_member.php' method='post'>
+                    <label for="inputmId" class="sr-only">身分證字號</label>
+                    <input type="text" name="mId"id="inputmId" class="form-control" placeholder="請輸入身分證字號" required autofocus>
+                    <br><br><br>
+                    <label for="inputPassword" class="sr-only">密碼</label>
+                    <input type="password" name="password"id="inputPassword" class="form-control" placeholder="請輸入密碼" required>
+                    <br><br><br>
+                    <label for="inputmName" class="sr-only">姓名</label>
+                    <input type="text" name="mName"id="inputmName" class="form-control" placeholder="請輸入姓名" required>
+                    <br><br><br>
+                    <label for="inputmPhone" class="sr-only">電話</label>
+                    <input type="text" name="mPhone"id="inputmPhone" class="form-control" placeholder="請輸入電話" required>
+                    <br><br><br>
+                    <label for="inputemail" class="sr-only">email</label>
+                    <input type="text" name="email"id="inputemail" class="form-control" placeholder="請輸入email" required>
+                    <br><br><br>
+                    <button  type="submit" name="signUp">確認修改</button>
+                </form>
+                </div>
             </div>
         </header>
     </body>

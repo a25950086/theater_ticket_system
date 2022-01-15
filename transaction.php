@@ -92,6 +92,15 @@
             .idtd{
                 width:10%;
             }
+            .signout{
+                border:none;
+                background-color: #7373B9;
+                color:white;
+                font-size:30px; 
+                width:100px;
+                height:auto;
+                margin-left: 2%;
+            }
         </style>    
     </head>
     <body>
@@ -109,43 +118,48 @@
                 <a href="member.php">
                     <img class="icon_s" src="member.png" height="50px" width="auto">
                 </a>
+                <form action='logout.php'>
+                    <?php
+                        if(isset($_SESSION['mId'])){
+                            echo '<span class="signout"> 你好 '.$_SESSION['mName'].'</span>';
+                            echo '<button  type="submit" class="signout" >登出</button>';
+                        }
+                    ?>
+                </form>
             </div>
             <div class="body">
                 <a  href="index.php"><img  class="icon_b" src="icon_b.png" alt="" width="50%" ></a>
                 <div class="body">
-                <table class="blueTable">
-                    <thead>
-                        <tr>
-                        <th class="idtd">No.</th>
-                                <th>電影名稱</th>
-                                <th>座位號碼</th>
-                                <th>詳細</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <?php
-                                include "db_conn.php";
-                                $mTitle  = "2gether電影版：只因我們天生一對";
-                                $query = ("select * from transaction_seat");
-                                $stmt = $db->prepare($query);
-                                $error = $stmt->execute();
-                                $result = $stmt->fetchAll();
-                                //以上寫法是為了防止「sql injection」
+                    <table class="blueTable">
+                        <thead>
+                            <tr>
+                            <th class="idtd">No.</th>
+                                    <th>電影名稱</th>
+                                    <th>座位號碼</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <?php
+                                    include "db_conn.php";
+                                    $mId  = $_SESSION['mId'];
+                                    $query = ("select * from transaction_seat where mId=?");
+                                    $stmt = $db->prepare($query);
+                                    $error = $stmt->execute(array($mId));
+                                    $result = $stmt->fetchAll();
+                                    //以上寫法是為了防止「sql injection」
 
-                                for($i=0; $i<count($result); $i++){
-                                    $no = $i+1;
-                                    $mTitle = $result [$i]['mTitle'];
-                                    echo "<tr>";
-                                        echo "<td class='idtd'>".$no."</td>";
-                                        echo "<td class='ti'>".$result [$i]['mTitle']."</td>";
-                                        echo "<td>".$result [$i]['seatNumber']."</td>";
-                                        echo "<td><a href=''>查看更多</a></td>";
-                                    echo "</tr>";
-                                }
-                            ?>
-                    </tbody>
-                </table>
-            </div>
+                                    for($i=0; $i<count($result); $i++){
+                                        $no = $i+1;
+                                        echo "<tr>";
+                                            echo "<td class='idtd'>".$no."</td>";
+                                            echo "<td class='ti'>".$result [$i]['mTitle']."</td>";
+                                            echo "<td>".$result [$i]['seatNumber']."</td>";
+                                        echo "</tr>";
+                                    }
+                                ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </header>
     </body>

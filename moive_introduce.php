@@ -94,6 +94,15 @@
                     width: 100%;
                     height: 100%;
                 }
+                .signout{
+                    border:none;
+                    background-color: #7373B9;
+                    color:white;
+                    font-size:30px; 
+                    width:100px;
+                    height:auto;
+                    margin-left: 2%;
+                }
         </style>    
     </head>
     <body>
@@ -111,6 +120,14 @@
                 <a href="member.php">
                     <img class="icon_s" src="member.png" height="50px" width="auto">
                 </a>
+                <form action='logout.php'>
+                    <?php
+                        if(isset($_SESSION['mId'])){
+                            echo '<span class="signout"> 你好 '.$_SESSION['mName'].'</span>';
+                            echo '<button  type="submit" class="signout" >登出</button>';
+                        }
+                    ?>
+                </form>
             </div>
             <div class="body">
                 <table class="blueTable">
